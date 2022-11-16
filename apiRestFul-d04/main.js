@@ -30,7 +30,7 @@ routerProductos.get('/:id', async (req, res) => {
 /*-------*/
 
 routerProductos.post('/guardar', async (req, res) => {
-    if(req.body.title == "" || req.body.price == "" || req.body.thumbnail == "" ) return res.json({Error: 'faltan elementos'})
+    if(JSON.stringify(req.body) == "{}" || req.body.title == "" || req.body.price == "" || req.body.thumbnail == "" ) return res.json({Error: 'faltan elementos'})
     let data = await container1.save(req.body.title, req.body.price, req.body.thumbnail)
     res.json(data)
 })

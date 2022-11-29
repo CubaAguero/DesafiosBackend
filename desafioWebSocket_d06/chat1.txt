@@ -1,0 +1,30 @@
+[
+  {
+    "msj": {
+      "name": "cuba@email.com",
+      "text": "hola",
+      "fyh": "Tue Nov 29 2022"
+    }
+  },
+  {
+    "msj": {
+      "name": "seba@email.com",
+      "text": "hola que tal?",
+      "fyh": "Tue Nov 29 2022"
+    }
+  },
+  {
+    "msj": {
+      "name": "cuba@email.com",
+      "text": "todo bien",
+      "fyh": "Tue Nov 29 2022"
+    }
+  },
+  {
+    "msj": {
+      "name": "juan@email.com",
+      "text": "hola",
+      "fyh": "Tue Nov 29 2022"
+    }
+  }
+]

@@ -1,0 +1,71 @@
+/--- crecion de la base de datos ---/
+
+use ecommerce
+
+
+/--creacion de las colecciones --/
+
+db.createCollection("mensajes")
+db.createCollection("productos")
+
+/--- punto 1 ---/
+
+db.productos.insertMany([
+  { "title": "Auriculares", "price": 900, "thumbnail": "https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678103-headphone-256.png"},
+  { "title": "Microfono", "price": 2800, "thumbnail": "https://www.iconfinder.com/icons/10481/microphone_icon"},
+  { "title": "Guitarra", "price": 5000, "thumbnail": "https://cdn2.iconfinder.com/data/icons/blackblue/128/guitar.png"},
+  { "title": "Partituras", "price": "125", "thumbnail": "https://cdn3.iconfinder.com/data/icons/ose/Music-File.png"},
+  { "title": "Palillos", "price": 300, "thumbnail": "https://cdn3.iconfinder.com/data/icons/kids-stuff/960/Drum_Instrument_Music_Percussion_Sticks-256.png"},
+  { "title": "Consola", "price": 4800, "thumbnail": "https://cdn4.iconfinder.com/data/icons/LUMINA/multimedia/png/256/audio_console.png"},
+  { "title": "Monitor de Estudio", "price": 3500, "thumbnail": "https://cdn2.iconfinder.com/data/icons/party-new-years/128/Party_Newyears_Speaker-256.png"},
+  { "title": "Pedal de Distorsion", "price": 1500, "thumbnail": "https://cdn2.iconfinder.com/data/icons/audio-music-5/64/distort-pedal-256.png"},
+  { "title": "Cable Plug", "price": 500, "thumbnail": "https://cdn2.iconfinder.com/data/icons/audio-music-5/64/cable-512.png"},
+  { "title": "Cd Musica", "price": 600, "thumbnail": "https://cdn2.iconfinder.com/data/icons/audio-music-5/85/cd-256.png"}
+])
+
+
+db.mensajes.insertMany([
+  { "message": { "name": "cuba@correo.com", "text": "hola"} },
+  { "message": { "name": "lucia@correo.com", "text": "como va?"} },
+  { "message": { "name": "cuba@correo.com", "text": "Queria hacer una consulta"} }
+])
+
+
+/--- punto 3 --- / 
+
+db.mensajes.find().pretty
+db.productos.find().pretty
+
+
+/--- punto 4 --- /
+
+db.mensajes.estimatedDocumentCount({})
+db.productos.estimateDocumentCount({})
+
+
+/---- punto 5 --- /
+a- 
+ db.productos.insertOne({"title": "Correa de guitarra", "price": 250, "thumbnail": "www.correadeguitarra.com"})
+
+b- 
+ i: db.productos.find({"price": {$lt: 1000}})
+ ii: db.productos.find({$and: [{"price": {$gte: 1000}}, {"price": {$lte: 3000}}]})
+ iii: db.productos.find({"price": {$gte: 3000}})
+ iv: db.productos.find({}, {"title": 1, "_id": 0}).sort({"price": 1}).skip(2).limit(1)
+
+c- 
+ db.productos.updateMany({}, {$set: {"stock": 100}})
+
+d-
+ db.productos.updateMany({"price": {$gt: 4000}}, {$set: {"stock": 0}})  
+
+e-
+ db.productos.deleteMany({"price": {$lt: 1000}})
+
+
+/--- punto 6 ---/
+
+use admin
+
+db.createUser({user: "pepe", "pwd": "asd456", "roles": [{"role": "read", "db": "ecommerce"}]})
+
